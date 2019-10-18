@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-
    <extension
          point="org.eclipse.core.contenttype.contentTypes">
       <content-type
@@ -10,11 +9,21 @@
             base-type="org.eclipse.core.runtime.text"
             file-extensions="project">
       </content-type>
+      <content-type
+            id="lsp_checkerframework.contentType"
+            name="Java file"
+            base-type="org.eclipse.core.runtime.text"
+            file-extensions="java, test">
+      </content-type>
    </extension>
    <extension
          point="org.eclipse.ui.editors">
       <editorContentTypeBinding
             contentTypeId="lsp_checkerframework.project"
+            editorId="org.eclipse.ui.genericeditor.GenericEditor">
+      </editorContentTypeBinding>
+      <editorContentTypeBinding
+            contentTypeId="lsp_checkerframework.contentType"
             editorId="org.eclipse.ui.genericeditor.GenericEditor">
       </editorContentTypeBinding>
    </extension>
@@ -69,8 +78,8 @@
             label="lsp_checkerframework.languageserver">
       </server>
       <contentTypeMapping
-      		contentType="lsp_checkerframework.project"
-      		id="">
+      		contentType="lsp_checkerframework.contentType"
+      		id="lsp_checkerframework.languageserver">
 	  </contentTypeMapping>
 	</extension>
 
