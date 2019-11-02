@@ -78,9 +78,16 @@
             label="lsp_checkerframework.languageserver">
       </server>
       <contentTypeMapping
-      		contentType="lsp_checkerframework.contentType"
+      		contentType="org.eclipse.jdt.core.javaSource"
       		id="lsp_checkerframework.languageserver">
 	  </contentTypeMapping>
 	</extension>
+	<extension
+         point="org.eclipse.core.filebuffers.documentSetup">
+      <participant
+            class="org.eclipse.lsp4e.ConnectDocumentToLanguageServerSetupParticipant"
+            contentTypeId="org.eclipse.jdt.core.javaSource">
+      </participant>
+   </extension>
 
 </plugin>
