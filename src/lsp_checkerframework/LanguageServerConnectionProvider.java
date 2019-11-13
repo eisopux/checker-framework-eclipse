@@ -29,19 +29,25 @@ public class LanguageServerConnectionProvider implements StreamConnectionProvide
 		
 		process = builder.start();
 		
+		if (!process.isAlive()) {
+			throw new IOException("Unable to start language server: " + this.toString());
+		}
+		
 		System.out.println("Started Process");
 	}
 
 	@Override
 	public InputStream getInputStream() {
-		// TODO Auto-generated method stub
-		return process.getInputStream();
+		InputStream input = process.getInputStream();
+		System.out.println(input.toString());
+		return input;
 	}
 
 	@Override
 	public OutputStream getOutputStream() {
-		// TODO Auto-generated method stub
-		return process.getOutputStream();
+		OutputStream output = process.getOutputStream();
+		System.out.println(output.toString());
+		return output;
 	}
 
 	@Override
