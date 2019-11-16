@@ -1,8 +1,10 @@
 package lsp_checkerframework;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
 
@@ -12,6 +14,8 @@ import org.eclipse.lsp4e.server.StreamConnectionProvider;
 public class LanguageServerConnectionProvider implements StreamConnectionProvider {
 	
 	private Process process;
+	private DebugInputStream debugInputStream;
+	private DebugOutputStream debugOutputStream;
 
 	@Override
 	public void start() throws IOException {
@@ -38,26 +42,31 @@ public class LanguageServerConnectionProvider implements StreamConnectionProvide
 
 	@Override
 	public InputStream getInputStream() {
-		InputStream input = process.getInputStream();
-		System.out.println(input.toString());
-		return input;
+//		InputStream input = process.getInputStream();
+		debugInputStream = new DebugInputStream(process.getInputStream(), true);
+//		System.out.println(input.toString());
+		
+		return debugInputStream;
 	}
 
 	@Override
 	public OutputStream getOutputStream() {
-		OutputStream output = process.getOutputStream();
-		System.out.println(output.toString());
-		return output;
+//		OutputStream output = process.getOutputStream();
+		debugOutputStream = new DebugOutputStream(process.getOutputStream(), true);
+//		System.out.println(output.toString());
+		return debugOutputStream;
 	}
 
 	@Override
 	public InputStream getErrorStream() {
-		// TODO Auto-generated method stub
-		return null;
+		InputStream error = process.getErrorStream();
+		System.out.println(error.toString());
+		return error;
 	}
 
 	@Override
 	public void stop() {
+		System.out.println("Stopping language server");
 		process.destroy();
 		process = null;
 		
