@@ -25,10 +25,17 @@ public class LanguageServerConnectionProvider implements StreamConnectionProvide
 		File serverFile = new File(FileLocator.toFileURL(serverFileUrl).getPath());
 		File javaLocation = getjavaLocation();
 		ProcessBuilder builder = new ProcessBuilder(
+//				javaLocation.getAbsolutePath(),
+//				"-cp",
+//				"/Users/michaeljiang/Documents/checker/dist/checker.jar:/Users/michaeljiang/Documents/workspace/LSP_CheckerFramework/src/lsp_checkerframework/checker-framework-languageserver-all.jar", 
+//				"org.checkerframework.languageserver.ServerMain"
+//				
 				javaLocation.getAbsolutePath(),
 				"-cp",
-				"/Users/michaeljiang/Documents/checker/dist/checker.jar:/Users/michaeljiang/Documents/workspace/LSP_CheckerFramework/src/lsp_checkerframework/checker-framework-languageserver-all.jar", 
-				"org.checkerframework.languageserver.ServerMain"
+				"/Users/michaeljiang/Documents/workspace/LSP_CheckerFramework/src/lsp_checkerframework/checker-framework-languageserver-0.0.6.jar:/Users/michaeljiang/Documents/checker/dist/checker.jar",
+				"org.checkerframework.languageserver.ServerMain",
+				"--frameworkPath /Users/michaeljiang/Documents/",
+				"--checkers org.checkerframework.checker.nullness.NullnessChecker"
 		);
 		
 		process = builder.start();

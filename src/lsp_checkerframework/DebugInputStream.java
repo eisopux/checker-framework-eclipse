@@ -27,9 +27,11 @@ public class DebugInputStream extends InputStream {
 		int readb;
 
 		readb = is.read(b, off, len);
-		if (debug) System.out.print("Input byte array: ");
-		for (byte e : b) System.out.println((char)e + " ");
-		System.out.println("\t with offset: " + off + " with length: " + len);
+		if (debug) {
+			System.out.print("Input byte array: ");
+			for (byte e : b) System.out.println((char)e + " ");
+			System.out.println("\t with offset: " + off + " with length: " + len);
+		}
 		return readb;
 	}
 

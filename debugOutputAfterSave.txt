@@ -1,0 +1,768 @@
+Output: C
+Output: o
+Output: n
+Output: t
+Output: e
+Output: n
+Output: t
+Output: -
+Output: L
+Output: e
+Output: n
+Output: g
+Output: t
+Output: h
+Output: :
+Output:  
+Output: 5
+Output: 3
+Output: 4
+Output: 
+Output: 
+
+Output: 
+Output: 
+
+Output: {
+Output: "
+Output: j
+Output: s
+Output: o
+Output: n
+Output: r
+Output: p
+Output: c
+Output: "
+Output: :
+Output: "
+Output: 2
+Output: .
+Output: 0
+Output: "
+Output: ,
+Output: "
+Output: m
+Output: e
+Output: t
+Output: h
+Output: o
+Output: d
+Output: "
+Output: :
+Output: "
+Output: t
+Output: e
+Output: x
+Output: t
+Output: D
+Output: o
+Output: c
+Output: u
+Output: m
+Output: e
+Output: n
+Output: t
+Output: /
+Output: d
+Output: i
+Output: d
+Output: S
+Output: a
+Output: v
+Output: e
+Output: "
+Output: ,
+Output: "
+Output: p
+Output: a
+Output: r
+Output: a
+Output: m
+Output: s
+Output: "
+Output: :
+Output: {
+Output: "
+Output: t
+Output: e
+Output: x
+Output: t
+Output: D
+Output: o
+Output: c
+Output: u
+Output: m
+Output: e
+Output: n
+Output: t
+Output: "
+Output: :
+Output: {
+Output: "
+Output: u
+Output: r
+Output: i
+Output: "
+Output: :
+Output: "
+Output: f
+Output: i
+Output: l
+Output: e
+Output: :
+Output: /
+Output: /
+Output: /
+Output: U
+Output: s
+Output: e
+Output: r
+Output: s
+Output: /
+Output: m
+Output: i
+Output: c
+Output: h
+Output: a
+Output: e
+Output: l
+Output: j
+Output: i
+Output: a
+Output: n
+Output: g
+Output: /
+Output: D
+Output: o
+Output: c
+Output: u
+Output: m
+Output: e
+Output: n
+Output: t
+Output: s
+Output: /
+Output: r
+Output: u
+Output: n
+Output: t
+Output: i
+Output: m
+Output: e
+Output: -
+Output: E
+Output: c
+Output: l
+Output: i
+Output: p
+Output: s
+Output: e
+Output: A
+Output: p
+Output: p
+Output: l
+Output: i
+Output: c
+Output: a
+Output: t
+Output: i
+Output: o
+Output: n
+Output: /
+Output: H
+Output: e
+Output: l
+Output: l
+Output: o
+Output: W
+Output: o
+Output: r
+Output: l
+Output: d
+Output: /
+Output: s
+Output: r
+Output: c
+Output: /
+Output: h
+Output: e
+Output: l
+Output: l
+Output: o
+Output: .
+Output: j
+Output: a
+Output: v
+Output: a
+Output: "
+Output: }
+Output: ,
+Output: "
+Output: t
+Output: e
+Output: x
+Output: t
+Output: "
+Output: :
+Output: "
+Output: i
+Output: m
+Output: p
+Output: o
+Output: r
+Output: t
+Output:  
+Output: o
+Output: r
+Output: g
+Output: .
+Output: c
+Output: h
+Output: e
+Output: c
+Output: k
+Output: e
+Output: r
+Output: f
+Output: r
+Output: a
+Output: m
+Output: e
+Output: w
+Output: o
+Output: r
+Output: k
+Output: .
+Output: c
+Output: h
+Output: e
+Output: c
+Output: k
+Output: e
+Output: r
+Output: .
+Output: n
+Output: u
+Output: l
+Output: l
+Output: n
+Output: e
+Output: s
+Output: s
+Output: .
+Output: q
+Output: u
+Output: a
+Output: l
+Output: .
+Output: N
+Output: u
+Output: l
+Output: l
+Output: a
+Output: b
+Output: l
+Output: e
+Output: ;
+Output: \
+Output: n
+Output: \
+Output: n
+Output: c
+Output: l
+Output: a
+Output: s
+Output: s
+Output:  
+Output: h
+Output: e
+Output: l
+Output: l
+Output: o
+Output:  
+Output: {
+Output: \
+Output: n
+Output: \
+Output: t
+Output: v
+Output: o
+Output: i
+Output: d
+Output:  
+Output: f
+Output: o
+Output: o
+Output:  
+Output: (
+Output: O
+Output: b
+Output: j
+Output: e
+Output: c
+Output: t
+Output:  
+Output: n
+Output: n
+Output: ,
+Output:  
+Output: @
+Output: N
+Output: u
+Output: l
+Output: l
+Output: a
+Output: b
+Output: l
+Output: e
+Output:  
+Output: O
+Output: b
+Output: j
+Output: e
+Output: c
+Output: t
+Output:  
+Output: n
+Output: b
+Output: l
+Output: )
+Output:  
+Output: {
+Output: \
+Output: n
+Output: \
+Output: t
+Output: \
+Output: t
+Output: n
+Output: n
+Output: .
+Output: t
+Output: o
+Output: S
+Output: t
+Output: r
+Output: i
+Output: n
+Output: g
+Output: (
+Output: )
+Output: ;
+Output: \
+Output: n
+Output: \
+Output: t
+Output: \
+Output: t
+Output: i
+Output: n
+Output: t
+Output:  
+Output: i
+Output:  
+Output: \
+Output: u
+Output: 0
+Output: 0
+Output: 3
+Output: d
+Output:  
+Output: 0
+Output: ;
+Output: \
+Output: n
+Output: \
+Output: t
+Output: \
+Output: t
+Output: n
+Output: b
+Output: l
+Output: .
+Output: t
+Output: o
+Output: S
+Output: t
+Output: r
+Output: i
+Output: n
+Output: g
+Output: (
+Output: )
+Output: ;
+Output: \
+Output: n
+Output: \
+Output: t
+Output: \
+Output: t
+Output: S
+Output: y
+Output: s
+Output: t
+Output: e
+Output: m
+Output: .
+Output: o
+Output: u
+Output: t
+Output: .
+Output: p
+Output: r
+Output: i
+Output: n
+Output: t
+Output: l
+Output: n
+Output: (
+Output: \
+Output: "
+Output: H
+Output: e
+Output: l
+Output: l
+Output: o
+Output:  
+Output: W
+Output: o
+Output: r
+Output: l
+Output: d
+Output: !
+Output: \
+Output: "
+Output: )
+Output: ;
+Output: \
+Output: n
+Output: \
+Output: t
+Output: \
+Output: t
+Output: S
+Output: y
+Output: s
+Output: t
+Output: e
+Output: m
+Output: .
+Output: o
+Output: u
+Output: t
+Output: .
+Output: p
+Output: r
+Output: i
+Output: n
+Output: t
+Output: l
+Output: n
+Output: (
+Output: \
+Output: "
+Output: H
+Output: e
+Output: l
+Output: l
+Output: o
+Output: \
+Output: "
+Output: )
+Output: ;
+Output: \
+Output: n
+Output: \
+Output: t
+Output: \
+Output: t
+Output: S
+Output: y
+Output: s
+Output: t
+Output: e
+Output: m
+Output: .
+Output: o
+Output: u
+Output: t
+Output: .
+Output: p
+Output: r
+Output: i
+Output: n
+Output: t
+Output: l
+Output: n
+Output: (
+Output: \
+Output: "
+Output: H
+Output: e
+Output: l
+Output: l
+Output: o
+Output: \
+Output: "
+Output: )
+Output: ;
+Output: \
+Output: n
+Output: \
+Output: t
+Output: \
+Output: t
+Output: S
+Output: y
+Output: s
+Output: t
+Output: e
+Output: m
+Output: .
+Output: o
+Output: u
+Output: t
+Output: .
+Output: p
+Output: r
+Output: i
+Output: n
+Output: t
+Output: l
+Output: n
+Output: (
+Output: \
+Output: "
+Output: H
+Output: e
+Output: l
+Output: l
+Output: o
+Output: \
+Output: "
+Output: )
+Output: ;
+Output:  
+Output: \
+Output: n
+Output: \
+Output: t
+Output: }
+Output:  
+Output:  
+Output:  
+Output: \
+Output: n
+Output: }
+Output: "
+Output: }
+Output: }
+Input: C
+Input: o
+Input: n
+Input: t
+Input: e
+Input: n
+Input: t
+Input: -
+Input: L
+Input: e
+Input: n
+Input: g
+Input: t
+Input: h
+Input: :
+Input:  
+Input: 1
+Input: 8
+Input: 4
+Input: 
+Input: 
+
+Input: 
+Input: 
+
+Input byte array: { 
+" 
+j 
+s 
+o 
+n 
+r 
+p 
+c 
+" 
+: 
+" 
+2 
+. 
+0 
+" 
+, 
+" 
+m 
+e 
+t 
+h 
+o 
+d 
+" 
+: 
+" 
+t 
+e 
+x 
+t 
+D 
+o 
+c 
+u 
+m 
+e 
+n 
+t 
+/ 
+p 
+u 
+b 
+l 
+i 
+s 
+h 
+D 
+i 
+a 
+g 
+n 
+o 
+s 
+t 
+i 
+c 
+s 
+" 
+, 
+" 
+p 
+a 
+r 
+a 
+m 
+s 
+" 
+: 
+{ 
+" 
+u 
+r 
+i 
+" 
+: 
+" 
+f 
+i 
+l 
+e 
+: 
+/ 
+U 
+s 
+e 
+r 
+s 
+/ 
+m 
+i 
+c 
+h 
+a 
+e 
+l 
+j 
+i 
+a 
+n 
+g 
+/ 
+D 
+o 
+c 
+u 
+m 
+e 
+n 
+t 
+s 
+/ 
+r 
+u 
+n 
+t 
+i 
+m 
+e 
+- 
+E 
+c 
+l 
+i 
+p 
+s 
+e 
+A 
+p 
+p 
+l 
+i 
+c 
+a 
+t 
+i 
+o 
+n 
+/ 
+H 
+e 
+l 
+l 
+o 
+W 
+o 
+r 
+l 
+d 
+/ 
+s 
+r 
+c 
+/ 
+h 
+e 
+l 
+l 
+o 
+. 
+j 
+a 
+v 
+a 
+" 
+, 
+" 
+d 
+i 
+a 
+g 
+n 
+o 
+s 
+t 
+i 
+c 
+s 
+" 
+: 
+[ 
+] 
+} 
+} 

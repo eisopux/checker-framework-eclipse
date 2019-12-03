@@ -15,7 +15,7 @@ public class DebugOutputStream extends OutputStream {
 
 	@Override
 	public void write(int b) throws IOException {
-		if (debug) System.out.println("Output: " + (char)b);
+		if (debug) System.out.print((char)b);
 
 		out.write(b);
 	}

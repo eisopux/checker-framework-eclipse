@@ -73,7 +73,7 @@
    <extension
    		point="org.eclipse.lsp4e.languageServer">
 	  <server
-	  		class="lsp_checkerframework.LanguageServerConnectionProvider"
+	  		class="lsp_checkerframework.LanguageServerStreamConnectionProvider"
             id="lsp_checkerframework.languageserver"
             label="lsp_checkerframework.languageserver">
       </server>
@@ -89,5 +89,17 @@
             contentTypeId="org.eclipse.jdt.core.javaSource">
       </participant>
    </extension>
+	 <extension
+	       point="org.eclipse.ui.preferencePages">
+	    <page
+	          class="lsp_checkerframework.CheckerFrameworkPreferences"
+	          id="LSP_CheckerFramework.preferences"
+	          name="CheckerFrameworkPreferences">
+	    </page>
+	 </extension>
+	 <extension
+	      point="org.eclipse.core.runtime.preferences">
+	      <initializer class="lsp_checkerframework.ReadmePreferenceInitializer"/>
+	 </extension>
 
 </plugin>
