@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URI;
 import java.util.*;
 
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.lsp4e.server.ProcessStreamConnectionProvider;
 import org.eclipse.lsp4j.InitializeResult;
 import org.eclipse.lsp4j.jsonrpc.messages.Message;
@@ -12,19 +13,111 @@ import org.eclipse.lsp4j.services.LanguageServer;
 
 public class LanguageServerStreamConnectionProvider extends ProcessStreamConnectionProvider {
 	public LanguageServerStreamConnectionProvider() {
-		System.out.println("Initializing LangServer");
 		
+		/**
+		 * Get the preferences from preference page
+		 */
+		
+		IPreferenceStore store = LSPCheckerFrameworkPlugin.getDefault().getPreferenceStore();
+
+        String typeChecker = store.getString(LSPCheckerFrameworkConstants.TYPE_CHECKER);
+        String checkerPath = store.getString(LSPCheckerFrameworkConstants.CHECKER_PATH);
+        String commandOptions = store.getString(LSPCheckerFrameworkConstants.COMMAND_OPTIONS);
+        
+        assert(!typeChecker.isEmpty());
+        assert(!checkerPath.isEmpty());
+        
+        System.out.println("Type Checker: " + typeChecker);
+        System.out.println("Checker Path: " + checkerPath);
+        System.out.println("Command Options: " + commandOptions);
+		
+		/**
+		 * Download checker framework and language server if needed
+		 */
+        
+        File f = new File(checkerPath);
+        File[] listOfFiles = f.listFiles(); 
+        
+        if (listOfFiles == null) System.err.println("Error: checker path is invalid");
+        
+        boolean languageServerExists = false;
+        boolean checkerFrameworkExists = false;
+        
+        for (File file : listOfFiles) {
+        	String name = file.getName();
+//        	System.out.println(name);
+        	if (name.contains("checker-framework-languageserver") && name.contains(".jar")) {
+        		languageServerExists = true;
+        	} else if (name.contains("checker-framework") && !name.contains("languageserver") && !name.contains(".zip")) {
+        		checkerFrameworkExists = true;
+        	}
+        }
+        
+        if (!languageServerExists || !checkerFrameworkExists) {
+        	//run the downloader
+        	try {
+        		/**
+        		 * java -jar checker-framework-languageserver-downloader-all.jar 
+        		 */
+        		final File downloaderFolder = new File(LanguageServerStreamConnectionProvider.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+        		
+        		String downloaderPath = downloaderFolder.getAbsolutePath() + "/checker-framework-languageserver-downloader-0.1.0.jar";
+        		
+        	    ProcessBuilder pb = new ProcessBuilder(
+        	      "java",
+        	      "-jar",
+        	      downloaderPath,
+        	      checkerPath
+        	    );
+        	    Process p = pb.start();     // Start the process.
+        	    int rc = p.waitFor();                // Wait for the process to finish.
+        	    System.out.println("Downloader executed with exit code: " + rc);
+        	  } catch (Exception e) {
+        	    e.printStackTrace();
+        	  }
+        }
+		
+		
+		/**
+		 * Start the language server
+		 */
+         
+        //get the paths of checker framework and language server
+        f = new File(checkerPath);
+        listOfFiles = f.listFiles(); 
+        
+        String checkerFrameworkAbsolutePath = "";
+        String checkerFrameworkAbsolutePathFolder = "";
+        String languageServerAbsolutePath = "";
+        
+        for (File file: listOfFiles) {
+        	String name = file.getName();
+
+        	if (name.contains("checker-framework-languageserver") && name.contains(".jar")) {
+        		System.out.println("found ls");
+        		languageServerAbsolutePath = checkerPath + name;
+        	} else if (name.contains("checker-framework") && !name.contains("languageserver") && !name.contains(".zip")) {
+        		System.out.println("found cf");
+        		checkerFrameworkAbsolutePath = checkerPath + name + "/checker/dist/checker.jar";
+        		checkerFrameworkAbsolutePathFolder = checkerPath + name;
+        	}
+        }
+        
+        System.out.println("Checker Framework Path: " + checkerFrameworkAbsolutePath);
+        System.out.println("Language Server Path: " + languageServerAbsolutePath);
+        
+		System.out.println("Initializing LangServer");
 		File javaLocation = getjavaLocation();
 		
 		List<String> commands = new ArrayList<>();
 		commands.add(javaLocation.getAbsolutePath());
 		commands.add("-cp");
-		commands.add("/Users/michaeljiang/Documents/workspace/LSP_CheckerFramework/src/lsp_checkerframework/checker-framework-languageserver-0.0.6.jar:/Users/michaeljiang/Documents/checker/dist/checker.jar");
+		commands.add(languageServerAbsolutePath + ":" + checkerFrameworkAbsolutePath);
 		commands.add("org.checkerframework.languageserver.ServerMain");
 		commands.add("--frameworkPath");
-		commands.add("/Users/michaeljiang/Documents/");
+		commands.add(checkerFrameworkAbsolutePathFolder);
 		commands.add("--checkers");
-		commands.add("org.checkerframework.checker.nullness.NullnessChecker");
+		commands.add(typeChecker);
 
 		setCommands(commands);
 		setWorkingDirectory(System.getProperty("user.dir"));
