@@ -231,14 +231,14 @@ IWorkbenchPreferencePage, SelectionListener, ModifyListener {
 	 * our preferences separately from the workbench.
 	 */
 	protected IPreferenceStore doGetPreferenceStore() {
-		return ReadmePlugin.getDefault().getPreferenceStore();
+		return LSPCheckerFrameworkPlugin.getDefault().getPreferenceStore();
 	}
 
 	/* (non-Javadoc)
 	 * Method declared on IWorkbenchPreferencePage
 	 */
 	public void init(IWorkbench workbench) {
-		setPreferenceStore(ReadmePlugin.getDefault().getPreferenceStore());
+		setPreferenceStore(LSPCheckerFrameworkPlugin.getDefault().getPreferenceStore());
 	}
 
 	/**
@@ -316,7 +316,7 @@ IWorkbenchPreferencePage, SelectionListener, ModifyListener {
 	 */
 	public boolean performOk() {
 		storeValues();
-		ReadmePlugin.getDefault().savePluginPreferences();
+		LSPCheckerFrameworkPlugin.getDefault().savePluginPreferences();
 		return true;
 	}
 

@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: LSP_CheckerFramework
 Bundle-SymbolicName: LSP_CheckerFramework;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: lsp_checkerframework.ReadmePlugin
+Bundle-Activator: lsp_checkerframework.LSPCheckerFrameworkPlugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.jface.text,
@@ -16,3 +16,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.lsp4j.jsonrpc
 Automatic-Module-Name: LSP_CheckerFramework
 Bundle-RequiredExecutionEnvironment: JavaSE-12
+Bundle-ActivationPolicy: lazy

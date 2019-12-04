@@ -89,17 +89,18 @@
             contentTypeId="org.eclipse.jdt.core.javaSource">
       </participant>
    </extension>
-	 <extension
-	       point="org.eclipse.ui.preferencePages">
-	    <page
-	          class="lsp_checkerframework.CheckerFrameworkPreferences"
-	          id="LSP_CheckerFramework.preferences"
-	          name="CheckerFrameworkPreferences">
-	    </page>
-	 </extension>
-	 <extension
-	      point="org.eclipse.core.runtime.preferences">
-	      <initializer class="lsp_checkerframework.ReadmePreferenceInitializer"/>
-	 </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="LSP Checker Framework"
+            class="lsp_checkerframework.LSPCheckerFrameworkPreferencePage"
+            id="org.eclipse.ui.examples.readmetool.Page1">
+      </page>
+   </extension>
+   
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="lsp_checkerframework.LSPCheckerFrameworkPreferenceInitializer"/>
+   </extension>
 
 </plugin>
