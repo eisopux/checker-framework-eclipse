@@ -65,6 +65,7 @@ public class LanguageServerStreamConnectionProvider extends ProcessStreamConnect
         	      downloaderPath,
         	      checkerPath
         	    );
+        	    System.out.println("Executing Downloader...");
         	    Process p = pb.start();     // Start the process.
         	    int rc = p.waitFor();                // Wait for the process to finish.
         	    System.out.println("Downloader executed with exit code: " + rc);

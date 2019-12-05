@@ -4,7 +4,7 @@ import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 /**
- * Initializes the preferences for the readme plug-in.
+ * Initializes the preferences for the plug-in.
  * 
  * @since 3.0
  */

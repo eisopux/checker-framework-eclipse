@@ -3,7 +3,7 @@ package lsp_checkerframework;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * This is the top-level class of the Readme plugin tool.
+ * This is the top-level class of the LSPCheckerFramework plugin tool.
  *
  * @see AbstractUIPlugin for additional information on UI plugins
  */
@@ -17,7 +17,7 @@ public class LSPCheckerFrameworkPlugin extends AbstractUIPlugin {
     private static LSPCheckerFrameworkPlugin inst;
 
     /**
-     * Creates the Readme plugin and caches its default instance
+     * Creates the plugin and caches its default instance
      */
     public LSPCheckerFrameworkPlugin() {
         if (inst == null)
@@ -27,7 +27,7 @@ public class LSPCheckerFrameworkPlugin extends AbstractUIPlugin {
     /**
      * Gets the plugin singleton.
      *
-     * @return the default ReadmePlugin instance
+     * @return the default LSPCheckerFrameworkPlugin instance
      */
     static public LSPCheckerFrameworkPlugin getDefault() {
         return inst;
