@@ -45,7 +45,6 @@ public class LanguageServerStreamConnectionProvider extends ProcessStreamConnect
         
         for (File file : listOfFiles) {
         	String name = file.getName();
-//        	System.out.println(name);
         	if (name.contains("checker-framework-languageserver") && name.contains(".jar")) {
         		languageServerExists = true;
         	} else if (name.contains("checker-framework") && !name.contains("languageserver") && !name.contains(".zip")) {
@@ -56,9 +55,6 @@ public class LanguageServerStreamConnectionProvider extends ProcessStreamConnect
         if (!languageServerExists || !checkerFrameworkExists) {
         	//run the downloader
         	try {
-        		/**
-        		 * java -jar checker-framework-languageserver-downloader-all.jar 
-        		 */
         		final File downloaderFolder = new File(LanguageServerStreamConnectionProvider.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
         		
         		String downloaderPath = downloaderFolder.getAbsolutePath() + "/checker-framework-languageserver-downloader-0.1.0.jar";
@@ -94,10 +90,8 @@ public class LanguageServerStreamConnectionProvider extends ProcessStreamConnect
         	String name = file.getName();
 
         	if (name.contains("checker-framework-languageserver") && name.contains(".jar")) {
-        		System.out.println("found ls");
         		languageServerAbsolutePath = checkerPath + name;
         	} else if (name.contains("checker-framework") && !name.contains("languageserver") && !name.contains(".zip")) {
-        		System.out.println("found cf");
         		checkerFrameworkAbsolutePath = checkerPath + name + "/checker/dist/checker.jar";
         		checkerFrameworkAbsolutePathFolder = checkerPath + name;
         	}
