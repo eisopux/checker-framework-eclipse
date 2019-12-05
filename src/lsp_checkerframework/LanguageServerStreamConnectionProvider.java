@@ -118,7 +118,12 @@ public class LanguageServerStreamConnectionProvider extends ProcessStreamConnect
 		commands.add(checkerFrameworkAbsolutePathFolder);
 		commands.add("--checkers");
 		commands.add(typeChecker);
-
+		
+		if (!commandOptions.isEmpty()) {
+			commands.add("--commandLineOptions");
+			commands.add(commandOptions);
+		}
+		
 		setCommands(commands);
 		setWorkingDirectory(System.getProperty("user.dir"));
 	}
