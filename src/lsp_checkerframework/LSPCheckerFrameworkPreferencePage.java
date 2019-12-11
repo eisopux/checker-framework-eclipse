@@ -18,192 +18,182 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.PlatformUI;
 
-
 /**
- * This class implements a sample preference page that is 
- * added to the preference dialog based on the registration.
+ * This class implements a sample preference page that is added to the preference dialog based on
+ * the registration.
  */
-public class LSPCheckerFrameworkPreferencePage extends PreferencePage implements
-        IWorkbenchPreferencePage, SelectionListener, ModifyListener {
+public class LSPCheckerFrameworkPreferencePage extends PreferencePage
+    implements IWorkbenchPreferencePage, SelectionListener, ModifyListener {
 
-    private Text textFieldTypeChecker;
-    private Text textFieldCheckerPath;
-    private Text textFieldCommandLineOptions;
+  private Text textFieldTypeChecker;
+  private Text textFieldCheckerPath;
+  private Text textFieldCommandLineOptions;
 
-    /**
-     * Creates composite control and sets the default layout data.
-     *
-     * @param parent  the parent of the new composite
-     * @param numColumns  the number of columns for the new composite
-     * @return the newly-created coposite
-     */
-    private Composite createComposite(Composite parent, int numColumns) {
-        Composite composite = new Composite(parent, SWT.NULL);
+  /**
+   * Creates composite control and sets the default layout data.
+   *
+   * @param parent the parent of the new composite
+   * @param numColumns the number of columns for the new composite
+   * @return the newly-created coposite
+   */
+  private Composite createComposite(Composite parent, int numColumns) {
+    Composite composite = new Composite(parent, SWT.NULL);
 
-        //GridLayout
-        GridLayout layout = new GridLayout();
-        layout.numColumns = numColumns;
-        composite.setLayout(layout);
+    // GridLayout
+    GridLayout layout = new GridLayout();
+    layout.numColumns = numColumns;
+    composite.setLayout(layout);
 
-        //GridData
-        GridData data = new GridData();
-        data.verticalAlignment = GridData.FILL;
-        data.horizontalAlignment = GridData.FILL;
-        composite.setLayoutData(data);
-        return composite;
-    }
+    // GridData
+    GridData data = new GridData();
+    data.verticalAlignment = GridData.FILL;
+    data.horizontalAlignment = GridData.FILL;
+    composite.setLayoutData(data);
+    return composite;
+  }
 
-    /** (non-Javadoc)
-     * Method declared on PreferencePage
-     */
-    protected Control createContents(Composite parent) {
-    	PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
-				LSPCheckerFrameworkConstants.PREFERENCE_PAGE_CONTEXT);
+  /** (non-Javadoc) Method declared on PreferencePage */
+  protected Control createContents(Composite parent) {
+    PlatformUI.getWorkbench()
+        .getHelpSystem()
+        .setHelp(parent, LSPCheckerFrameworkConstants.PREFERENCE_PAGE_CONTEXT);
 
-        //composite_textField << parent
-        Composite composite_textField_typeChecker = createComposite(parent, 2);
-        createLabel(composite_textField_typeChecker, MessageUtil.getString("Text_Field_Type_Checker")); //$NON-NLS-1$
-        
-        Composite composite_textField_checkerPath = createComposite(parent, 2);
-        createLabel(composite_textField_checkerPath, MessageUtil.getString("Text_Field_Checker_Path")); //$NON-NLS-1$
-        
-        Composite composite_textField_commandOptions = createComposite(parent, 2);
-        createLabel(composite_textField_commandOptions, MessageUtil.getString("Text_Field_Command_Options")); //$NON-NLS-1$
-        
-        textFieldTypeChecker = createTextField(composite_textField_typeChecker);
-        textFieldCheckerPath = createTextField(composite_textField_checkerPath);
-        textFieldCommandLineOptions = createTextField(composite_textField_commandOptions);
+    // composite_textField << parent
+    Composite composite_textField_typeChecker = createComposite(parent, 2);
+    createLabel(
+        composite_textField_typeChecker,
+        MessageUtil.getString("Text_Field_Type_Checker")); // $NON-NLS-1$
 
-        initializeValues();
+    Composite composite_textField_checkerPath = createComposite(parent, 2);
+    createLabel(
+        composite_textField_checkerPath,
+        MessageUtil.getString("Text_Field_Checker_Path")); // $NON-NLS-1$
 
-        //font = null;
-        return new Composite(parent, SWT.NULL);
-    }
+    Composite composite_textField_commandOptions = createComposite(parent, 2);
+    createLabel(
+        composite_textField_commandOptions,
+        MessageUtil.getString("Text_Field_Command_Options")); // $NON-NLS-1$
 
-    /**
-     * Utility method that creates a label instance
-     * and sets the default layout data.
-     *
-     * @param parent  the parent for the new label
-     * @param text  the text for the new label
-     * @return the new label
-     */
-    private Label createLabel(Composite parent, String text) {
-        Label label = new Label(parent, SWT.LEFT);
-        label.setText(text);
-        GridData data = new GridData();
-        data.horizontalSpan = 2;
-        data.horizontalAlignment = GridData.FILL;
-        label.setLayoutData(data);
-        return label;
-    }
+    textFieldTypeChecker = createTextField(composite_textField_typeChecker);
+    textFieldCheckerPath = createTextField(composite_textField_checkerPath);
+    textFieldCommandLineOptions = createTextField(composite_textField_commandOptions);
 
+    initializeValues();
 
-    /**
-     * Create a text field specific for this application
-     *
-     * @param parent  the parent of the new text field
-     * @return the new text field
-     */
-    private Text createTextField(Composite parent) {
-        Text text = new Text(parent, SWT.SINGLE | SWT.BORDER);
-        text.addModifyListener(this);
-        GridData data = new GridData();
-        data.horizontalAlignment = GridData.FILL;
-        data.grabExcessHorizontalSpace = true;
-        data.verticalAlignment = GridData.CENTER;
-        data.grabExcessVerticalSpace = false;
-        text.setLayoutData(data);
-        return text;
-    }
+    // font = null;
+    return new Composite(parent, SWT.NULL);
+  }
 
-    /** 
-     * The <code>ReadmePreferencePage</code> implementation of this
-     * <code>PreferencePage</code> method 
-     * returns preference store that belongs to the our plugin.
-     * This is important because we want to store
-     * our preferences separately from the workbench.
-     */
-    protected IPreferenceStore doGetPreferenceStore() {
-        return LSPCheckerFrameworkPlugin.getDefault().getPreferenceStore();
-    }
+  /**
+   * Utility method that creates a label instance and sets the default layout data.
+   *
+   * @param parent the parent for the new label
+   * @param text the text for the new label
+   * @return the new label
+   */
+  private Label createLabel(Composite parent, String text) {
+    Label label = new Label(parent, SWT.LEFT);
+    label.setText(text);
+    GridData data = new GridData();
+    data.horizontalSpan = 2;
+    data.horizontalAlignment = GridData.FILL;
+    label.setLayoutData(data);
+    return label;
+  }
 
-    /* (non-Javadoc)
-     * Method declared on IWorkbenchPreferencePage
-     */
-    public void init(IWorkbench workbench) {
-        // do nothing
-    }
+  /**
+   * Create a text field specific for this application
+   *
+   * @param parent the parent of the new text field
+   * @return the new text field
+   */
+  private Text createTextField(Composite parent) {
+    Text text = new Text(parent, SWT.SINGLE | SWT.BORDER);
+    text.addModifyListener(this);
+    GridData data = new GridData();
+    data.horizontalAlignment = GridData.FILL;
+    data.grabExcessHorizontalSpace = true;
+    data.verticalAlignment = GridData.CENTER;
+    data.grabExcessVerticalSpace = false;
+    text.setLayoutData(data);
+    return text;
+  }
 
-    /**
-     * Initializes states of the controls using default values
-     * in the preference store.
-     */
-    private void initializeDefaults() {
-        IPreferenceStore store = getPreferenceStore();
+  /**
+   * The <code>ReadmePreferencePage</code> implementation of this <code>PreferencePage</code> method
+   * returns preference store that belongs to the our plugin. This is important because we want to
+   * store our preferences separately from the workbench.
+   */
+  protected IPreferenceStore doGetPreferenceStore() {
+    return LSPCheckerFrameworkPlugin.getDefault().getPreferenceStore();
+  }
 
-        textFieldTypeChecker.setText(store.getDefaultString(LSPCheckerFrameworkConstants.TYPE_CHECKER));
-        textFieldCheckerPath.setText(store.getDefaultString(LSPCheckerFrameworkConstants.CHECKER_PATH));
-        textFieldCommandLineOptions.setText(store.getDefaultString(LSPCheckerFrameworkConstants.COMMAND_OPTIONS));
-    }
+  /* (non-Javadoc)
+   * Method declared on IWorkbenchPreferencePage
+   */
+  public void init(IWorkbench workbench) {
+    // do nothing
+  }
 
-    /**
-     * Initializes states of the controls from the preference store.
-     */
-    private void initializeValues() {
-        IPreferenceStore store = getPreferenceStore();
+  /** Initializes states of the controls using default values in the preference store. */
+  private void initializeDefaults() {
+    IPreferenceStore store = getPreferenceStore();
 
-        textFieldTypeChecker.setText(store.getString(LSPCheckerFrameworkConstants.TYPE_CHECKER));
-        textFieldCheckerPath.setText(store.getString(LSPCheckerFrameworkConstants.CHECKER_PATH));
-        textFieldCommandLineOptions.setText(store.getString(LSPCheckerFrameworkConstants.COMMAND_OPTIONS));
-    }
+    textFieldTypeChecker.setText(store.getDefaultString(LSPCheckerFrameworkConstants.TYPE_CHECKER));
+    textFieldCheckerPath.setText(store.getDefaultString(LSPCheckerFrameworkConstants.CHECKER_PATH));
+    textFieldCommandLineOptions.setText(
+        store.getDefaultString(LSPCheckerFrameworkConstants.COMMAND_OPTIONS));
+  }
 
-    /** (non-Javadoc)
-     * Method declared on ModifyListener
-     */
-    public void modifyText(ModifyEvent event) {
-        //Do nothing on a modification in this example
-    }
+  /** Initializes states of the controls from the preference store. */
+  private void initializeValues() {
+    IPreferenceStore store = getPreferenceStore();
 
-    /* (non-Javadoc)
-     * Method declared on PreferencePage
-     */
-    protected void performDefaults() {
-        super.performDefaults();
-        initializeDefaults();
-    }
+    textFieldTypeChecker.setText(store.getString(LSPCheckerFrameworkConstants.TYPE_CHECKER));
+    textFieldCheckerPath.setText(store.getString(LSPCheckerFrameworkConstants.CHECKER_PATH));
+    textFieldCommandLineOptions.setText(
+        store.getString(LSPCheckerFrameworkConstants.COMMAND_OPTIONS));
+  }
 
-    /* (non-Javadoc)
-     * Method declared on PreferencePage
-     */
-    public boolean performOk() {
-        storeValues();
-        LSPCheckerFrameworkPlugin.getDefault().savePluginPreferences();
-        return true;
-    }
+  /** (non-Javadoc) Method declared on ModifyListener */
+  public void modifyText(ModifyEvent event) {
+    // Do nothing on a modification in this example
+  }
 
-    /**
-     * Stores the values of the controls back to the preference store.
-     */
-    private void storeValues() {
-        IPreferenceStore store = getPreferenceStore();
-        
-        store.setValue(LSPCheckerFrameworkConstants.TYPE_CHECKER, textFieldTypeChecker.getText());
-        store.setValue(LSPCheckerFrameworkConstants.CHECKER_PATH, textFieldCheckerPath.getText());
-        store.setValue(LSPCheckerFrameworkConstants.COMMAND_OPTIONS, textFieldCommandLineOptions.getText());
-    }
+  /* (non-Javadoc)
+   * Method declared on PreferencePage
+   */
+  protected void performDefaults() {
+    super.performDefaults();
+    initializeDefaults();
+  }
 
-    /** (non-Javadoc)
-     * Method declared on SelectionListener
-     */
-    public void widgetDefaultSelected(SelectionEvent event) {
-        //Handle a default selection. Do nothing in this example
-    }
+  /* (non-Javadoc)
+   * Method declared on PreferencePage
+   */
+  public boolean performOk() {
+    storeValues();
+    LSPCheckerFrameworkPlugin.getDefault().savePluginPreferences();
+    return true;
+  }
 
-    /** (non-Javadoc)
-     * Method declared on SelectionListener
-     */
-    public void widgetSelected(SelectionEvent event) {
-        //Do nothing on selection in this example;
-    }
+  /** Stores the values of the controls back to the preference store. */
+  private void storeValues() {
+    IPreferenceStore store = getPreferenceStore();
+
+    store.setValue(LSPCheckerFrameworkConstants.TYPE_CHECKER, textFieldTypeChecker.getText());
+    store.setValue(LSPCheckerFrameworkConstants.CHECKER_PATH, textFieldCheckerPath.getText());
+    store.setValue(
+        LSPCheckerFrameworkConstants.COMMAND_OPTIONS, textFieldCommandLineOptions.getText());
+  }
+
+  /** (non-Javadoc) Method declared on SelectionListener */
+  public void widgetDefaultSelected(SelectionEvent event) {
+    // Handle a default selection. Do nothing in this example
+  }
+
+  /** (non-Javadoc) Method declared on SelectionListener */
+  public void widgetSelected(SelectionEvent event) {
+    // Do nothing on selection in this example;
+  }
 }
