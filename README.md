@@ -1,5 +1,5 @@
-# CheckerFramework_LSP_Eclipse
-An LSP4E Eclipse plugin connecting to the Checker Framework LSP
+# Checker Framework Support for Eclipse
+An LSP4E Eclipse plugin connecting to the Checker Framework LSP language server.
 
 ## First-Time Install Setup Instructions
 
