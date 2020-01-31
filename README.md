@@ -16,7 +16,7 @@ The plugin's default preference settings are empty strings and must be specified
 
 ## Using this Plugin
 
-As You can test the plugin by clicking the Run button in the Eclipse Plugin Development IDE (PDE).
+You can test the plugin by clicking the Run button in the Eclipse Plugin Development IDE (PDE).
 
 The plugin will automatically start the language server when a `.java` file is opened. To re-run the checker, either save the changes in the file or re-open the file.
 
