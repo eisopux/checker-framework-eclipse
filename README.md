@@ -12,7 +12,7 @@ The plugin's default preference settings are empty strings and must be specified
 
 **Note: any changes to the preference text fields require a restart to allow the plugin to see the changes**
 
-**Note 2: make sure the folder specified in the checker path only contains one instance of language server and Checker Cramework. There is currently no way of specifying which version to use in the plugin if there are multiple versions of the files.**
+**Note 2: make sure the folder specified in the checker path only contains one instance of language server and Checker Framework. There is currently no way of specifying which version to use in the plugin if there are multiple versions of the files.**
 
 ## Using this Plugin
 
