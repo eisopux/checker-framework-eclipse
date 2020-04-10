@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/lsp_checkerframework.feature_2.3.2.jar" id="lsp_checkerframework.feature" version="2.3.2"/>
+      <category name="lsp_checkerframework_update_site"/>
+   </feature>
+   <category-def name="lsp_checkerframework_update_site" label="Pluggable Type-Checking"/>
+</site>
+
