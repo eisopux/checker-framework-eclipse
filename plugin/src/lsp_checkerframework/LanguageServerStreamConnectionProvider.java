@@ -87,7 +87,7 @@ public class LanguageServerStreamConnectionProvider extends ProcessStreamConnect
     for (File file : listOfFiles) {
       String name = file.getName();
 
-      if (name.contains("checker-framework-languageserver") && name.contains(".jar") && !name.contains("downloader")) {
+      if (name.contains("checker-framework-languageserver") && name.contains(".jar")) {
         languageServerAbsolutePath = checkerPath + name;
       } else if (name.contains("checker-framework")
           && !name.contains("languageserver")
