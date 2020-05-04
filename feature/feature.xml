@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="lsp_checkerframework.feature"
-      label="Feature"
-      version="2.3.2"
+      id="checker-framework-eclipse-feature"
+      label="checker framework eclipse feature"
+      version="0.0.1"
       provider-name="Checker Framework Development Team">
 
    <description url="https://checkerframework.org/eclipse">
@@ -387,7 +387,7 @@ as provided by Sun in the LICENSE file that accompanied this code.&quot;
    </requires>
 
    <plugin
-         id="LSP_CheckerFramework"
+         id="checker-framework-eclipse-plugin"
          download-size="0"
          install-size="0"
          version="0.0.0"
