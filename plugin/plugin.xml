@@ -4,13 +4,13 @@
    <extension
          point="org.eclipse.core.contenttype.contentTypes">
       <content-type
-            id="lsp_checkerframework.project"
-            name="lsp_checkerframework.project"
+            id="org.checkerframework.languageserver.eclipse.project"
+            name="org.checkerframework.languageserver.eclipse.project"
             base-type="org.eclipse.core.runtime.text"
             file-extensions="project">
       </content-type>
       <content-type
-            id="lsp_checkerframework.contentType"
+            id="org.checkerframework.languageserver.eclipse.contentType"
             name="Java file"
             base-type="org.eclipse.core.runtime.text"
             file-extensions="java, test">
@@ -19,70 +19,70 @@
    <extension
          point="org.eclipse.ui.editors">
       <editorContentTypeBinding
-            contentTypeId="lsp_checkerframework.project"
+            contentTypeId="org.checkerframework.languageserver.eclipse.project"
             editorId="org.eclipse.ui.genericeditor.GenericEditor">
       </editorContentTypeBinding>
       <editorContentTypeBinding
-            contentTypeId="lsp_checkerframework.contentType"
+            contentTypeId="org.checkerframework.languageserver.eclipse.contentType"
             editorId="org.eclipse.ui.genericeditor.GenericEditor">
       </editorContentTypeBinding>
    </extension>
    <extension
          point="org.eclipse.ui.genericeditor.presentationReconcilers">
       <presentationReconciler
-            class="lsp_checkerframework.ProjectPresentationReconciler"
-            contentType="lsp_checkerframework.project">
+            class="org.checkerframework.languageserver.eclipse.ProjectPresentationReconciler"
+            contentType="org.checkerframework.languageserver.eclipse.project">
       </presentationReconciler>
    </extension>
    <extension
          point="org.eclipse.ui.genericeditor.hoverProviders">
       <hoverProvider
-            class="lsp_checkerframework.ProjectHoverProvider"
-            contentType="lsp_checkerframework.project">
+            class="org.checkerframework.languageserver.eclipse.ProjectHoverProvider"
+            contentType="org.checkerframework.languageserver.eclipse.project">
       </hoverProvider>
    </extension>
    <extension
          point="org.eclipse.ui.genericeditor.contentAssistProcessors">
       <contentAssistProcessor
-            class="lsp_checkerframework.ProjectContentAssistProcessor"
-            contentType="lsp_checkerframework.project">
+            class="org.checkerframework.languageserver.eclipse.ProjectContentAssistProcessor"
+            contentType="org.checkerframework.languageserver.eclipse.project">
       </contentAssistProcessor>
    </extension>
    <extension
          point="org.eclipse.ui.genericeditor.autoEditStrategies">
       <autoEditStrategy
-            class="lsp_checkerframework.ProjectAutoEditStrategy"
-            contentType="lsp_checkerframework.project">
+            class="org.checkerframework.languageserver.eclipse.ProjectAutoEditStrategy"
+            contentType="org.checkerframework.languageserver.eclipse.project">
       </autoEditStrategy>
    </extension>
    <extension
          point="org.eclipse.ui.genericeditor.reconcilers">
       <reconciler
-            class="lsp_checkerframework.ProjectReconciler"
-            contentType="lsp_checkerframework.project">
+            class="org.checkerframework.languageserver.eclipse.ProjectReconciler"
+            contentType="org.checkerframework.languageserver.eclipse.project">
       </reconciler>
    </extension>
    <extension
          point="org.eclipse.core.filebuffers.documentSetup">
       <participant
-            class="lsp_checkerframework.ValidatorDocumentSetupParticipant"
-            contentTypeId="lsp_checkerframework.project"
+            class="org.checkerframework.languageserver.eclipse.ValidatorDocumentSetupParticipant"
+            contentTypeId="org.checkerframework.languageserver.eclipse.project"
             extensions="project">
       </participant>
    </extension>
    <extension
-   		point="org.eclipse.lsp4e.languageServer">
-	  <server
-	  		class="lsp_checkerframework.LanguageServerStreamConnectionProvider"
-            id="lsp_checkerframework.languageserver"
-            label="lsp_checkerframework.languageserver">
+         point="org.eclipse.lsp4e.languageServer">
+      <server
+            class="org.checkerframework.languageserver.eclipse.LanguageServerStreamConnectionProvider"
+            id="org.checkerframework.languageserver.eclipse.languageserver"
+            label="org.checkerframework.languageserver.eclipse.languageserver">
       </server>
       <contentTypeMapping
-      		contentType="org.eclipse.jdt.core.javaSource"
-      		id="lsp_checkerframework.languageserver">
-	  </contentTypeMapping>
-	</extension>
-	<extension
+            contentType="org.eclipse.jdt.core.javaSource"
+            id="org.checkerframework.languageserver.eclipse.languageserver">
+      </contentTypeMapping>
+   </extension>
+   <extension
          point="org.eclipse.core.filebuffers.documentSetup">
       <participant
             class="org.eclipse.lsp4e.ConnectDocumentToLanguageServerSetupParticipant"
@@ -92,15 +92,15 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            name="LSP Checker Framework"
-            class="lsp_checkerframework.LSPCheckerFrameworkPreferencePage"
+            name="Checker Framework LSP"
+            class="org.checkerframework.languageserver.eclipse.LSPCheckerFrameworkPreferencePage"
             id="org.eclipse.ui.examples.readmetool.Page1">
       </page>
    </extension>
    
    <extension
          point="org.eclipse.core.runtime.preferences">
-      <initializer class="lsp_checkerframework.LSPCheckerFrameworkPreferenceInitializer"/>
+      <initializer class="org.checkerframework.languageserver.eclipse.LSPCheckerFrameworkPreferenceInitializer"/>
    </extension>
 
 </plugin>
