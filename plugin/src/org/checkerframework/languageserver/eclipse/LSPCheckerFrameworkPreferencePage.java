@@ -1,4 +1,4 @@
-package lsp_checkerframework;
+package org.checkerframework.languageserver.eclipse;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
