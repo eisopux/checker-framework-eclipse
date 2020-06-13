@@ -10,5 +10,4 @@
 
   <artifactId>org.checkerframework.languageserver.eclipse</artifactId>
   <packaging>eclipse-plugin</packaging>
-
 </project>
