@@ -9,7 +9,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -34,7 +33,7 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
    *
    * @param parent the parent of the new composite
    * @param numColumns the number of columns for the new composite
-   * @return the newly-created coposite
+   * @return the newly-created composite
    */
   private Composite createComposite(Composite parent, int numColumns) {
     Composite composite = new Composite(parent, SWT.NULL);
