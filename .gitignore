@@ -1,0 +1,5 @@
+.vscode
+.idea
+
+plugin/bin/
+plugin/target/
