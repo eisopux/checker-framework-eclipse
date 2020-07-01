@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: LSP_CheckerFramework
 Bundle-SymbolicName: LSP_CheckerFramework;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: lsp_checkerframework.LSPCheckerFrameworkPlugin
+Bundle-Activator: org.checkerframework.languageserver.eclipse.LSPCheckerFrameworkPlugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.jface.text,
