@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>lsp_checkerframework.feature</name>
+	<name>org.checkerframework.languageserver.eclipse.feature</name>
 	<comment></comment>
 	<projects>
 	</projects>

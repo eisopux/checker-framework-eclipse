@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="lsp_checkerframework.feature"
+      id="org.checkerframework.languageserver.eclipse.feature"
       label="Feature"
       version="2.3.2"
       provider-name="Checker Framework Development Team">
@@ -387,7 +387,7 @@ as provided by Sun in the LICENSE file that accompanied this code.&quot;
    </requires>
 
    <plugin
-         id="LSP_CheckerFramework"
+         id="org.checkerframework.languageserver.eclipse"
          download-size="0"
          install-size="0"
          version="0.0.0"

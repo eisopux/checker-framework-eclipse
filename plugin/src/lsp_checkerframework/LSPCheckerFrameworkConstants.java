@@ -1,8 +1,8 @@
-package lsp_checkerframework;
+package org.checkerframework.languageserver.eclipse;
 
 /** This interface contains constants for use only within the LSP CheckerFramework Plugin. */
 public interface LSPCheckerFrameworkConstants {
-  public static final String PLUGIN_ID = "lsp_checkerframework"; // $NON-NLS-1$
+  public static final String PLUGIN_ID = "org.checkerframework.languageserver.eclipse"; // $NON-NLS-1$
 
   public static final String PREFIX = PLUGIN_ID + "."; // $NON-NLS-1$
 
