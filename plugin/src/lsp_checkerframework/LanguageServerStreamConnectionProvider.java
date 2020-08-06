@@ -1,4 +1,4 @@
-package org.checkerframework.languageserver.eclipse;
+package lsp_checkerframework;
 
 import java.io.File;
 import java.net.URI;

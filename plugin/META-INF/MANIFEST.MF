@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.checkerframework.languageserver.eclipse
-Bundle-SymbolicName: org.checkerframework.languageserver.eclipse;singleton:=true
+Bundle-Name: LSP_CheckerFramework
+Bundle-SymbolicName: LSP_CheckerFramework;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.checkerframework.languageserver.eclipse.LSPCheckerFrameworkPlugin
+Bundle-Activator: lsp_checkerframework.LSPCheckerFrameworkPlugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.jface.text,
@@ -14,6 +14,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.lsp4e,
  org.eclipse.lsp4j,
  org.eclipse.lsp4j.jsonrpc
-Automatic-Module-Name: org.checkerframework.languageserver.eclipse
+Automatic-Module-Name: LSP_CheckerFramework
 Bundle-RequiredExecutionEnvironment: JavaSE-12
 Bundle-ActivationPolicy: lazy

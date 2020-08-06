@@ -1,4 +1,4 @@
-package org.checkerframework.languageserver.eclipse;
+package lsp_checkerframework;
 
 import java.text.MessageFormat;
 import java.util.MissingResourceException;
@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 /** Utility class which helps with managing messages. */
 /* package */ class MessageUtil {
 
-  private static final String RESOURCE_BUNDLE = "org.checkerframework.languageserver.eclipse.messages"; // $NON-NLS-1$
+  private static final String RESOURCE_BUNDLE = "lsp_checkerframework.messages"; // $NON-NLS-1$
 
   private static ResourceBundle fgResourceBundle = ResourceBundle.getBundle(RESOURCE_BUNDLE);
 

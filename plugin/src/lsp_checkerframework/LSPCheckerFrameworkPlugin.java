@@ -1,4 +1,4 @@
-package org.checkerframework.languageserver.eclipse;
+package lsp_checkerframework;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
