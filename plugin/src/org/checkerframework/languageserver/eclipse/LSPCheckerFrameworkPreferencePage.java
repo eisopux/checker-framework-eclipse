@@ -29,17 +29,23 @@ import org.eclipse.ui.PlatformUI;
 public class LSPCheckerFrameworkPreferencePage extends PreferencePage
     implements IWorkbenchPreferencePage, SelectionListener, ModifyListener {
 	
-	private Map<String, String> checkerOptionsMap = new HashMap<String, String>() {{
-		put("Nullness Checker", "org.checkerframework.checker.nullness.NullnessChecker");
-		put("Optional Checker", "org.checkerframework.checker.optional.OptionalChecker");
-		put("Map Key Checker", "org.checkerframework.checker.nullness.qual");
-		put("Interning Checker", "org.checkerframework.checker.interning.InterningChecker");
-	}};
+  /**
+   * Creates built in checker map.
+   *
+   * @key Checkers' display names in the drop down list
+   * @value Checkers' full name to initialize the server
+   */
+  final private Map<String, String> builtinCheckers = new HashMap<String, String>() {{
+    put("Nullness Checker", "org.checkerframework.checker.nullness.NullnessChecker");
+	put("Optional Checker", "org.checkerframework.checker.optional.OptionalChecker");
+	put("Regex Checker", "org.checkerframework.checker.regex");
+	put("Interning Checker", "org.checkerframework.checker.interning.InterningChecker");
+  }};
 
   private Text textFieldTypeChecker;
   private Text textFieldCheckerPath;
   private Text textFieldCommandLineOptions;
-  private List multiSelectDropdownCheckerOptions;
+  private List multiSelectCheckerOptions;
 
   /**
    * Creates composite control and sets the default layout data.
@@ -92,7 +98,7 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
         MessageUtil.getString("Text_Field_Command_Options")); // $NON-NLS-1$
 
     textFieldTypeChecker = createTextField(composite_textField_typeChecker);
-    multiSelectDropdownCheckerOptions = createMultiSelectDropdown(composite_multiSelectDropdown_checker_options);
+    multiSelectCheckerOptions = createMultiSelectDropdown(composite_multiSelectDropdown_checker_options);
     textFieldCheckerPath = createTextField(composite_textField_checkerPath);
     textFieldCommandLineOptions = createTextField(composite_textField_commandOptions);
 
@@ -138,26 +144,10 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
   }
   
   /**
-   * Create a Check box specific for this application
+   * Create a multi-select list specific for this application
    *
    * @param parent the parent of the new text field
-   * @return the new text field
-   */
-  private Button createCheckBox(Composite parent) {
-	  Button checkBox = new Button(parent, SWT.CHECK);
-	  checkBox.setText("Test");
-	  checkBox.addSelectionListener(this);
-	  GridData data = new GridData();
-	  data.verticalAlignment = GridData.CENTER;
-	  checkBox.setLayoutData(data);
-	  return checkBox;
-  }
-  
-  /**
-   * Create a Check box specific for this application
-   *
-   * @param parent the parent of the new text field
-   * @return the new text field
+   * @return the new multi-select list
    */
   private List createMultiSelectDropdown(Composite parent) {
 	// Create a multiple-selection list
@@ -204,32 +194,33 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
     textFieldCommandLineOptions.setText(
         store.getString(LSPCheckerFrameworkConstants.COMMAND_OPTIONS));
     
-    
+    /** Initializes states of the multi-select list from the preference store. */
     String[] checkersStored = store.getString(LSPCheckerFrameworkConstants.TYPE_CHECKER).split("\\,");
     for (String checkerFullName : checkersStored) {
     	for (String checkerName : checkerOptionsMap.keySet()) {
     		if (checkerFullName.equals(checkerOptionsMap.get(checkerName))) {
-    			for(int i = 0; i < multiSelectDropdownCheckerOptions.getItems().length; i++) {
-    				if(multiSelectDropdownCheckerOptions.getItems()[i].equals(checkerName)) {
-    	    			multiSelectDropdownCheckerOptions.select(i);
+    			for(int i = 0; i < multiSelectCheckerOptions.getItems().length; i++) {
+    				if(multiSelectCheckerOptions.getItems()[i].equals(checkerName)) {
+    	    			multiSelectCheckerOptions.select(i);
     	        	}
     			}
     		}
     	}
     }
    
+    /** Adds a listener to the multi-select list to synchronize inputed checkers from the text field. */
     ModifyListener checkerMultiSelectListener = new ModifyListener() {
         /** {@inheritDoc} */
         public void modifyText(ModifyEvent e) {
             // Handle event
         	String[] inputCheckers = textFieldTypeChecker.getText().split("\\,");
-        	multiSelectDropdownCheckerOptions.deselectAll();
+        	multiSelectCheckerOptions.deselectAll();
         	for (String checkerFullName : inputCheckers) {
             	for (String checkerName : checkerOptionsMap.keySet()) {
             		if (checkerFullName.equals(checkerOptionsMap.get(checkerName))) {
-            			for(int i = 0; i < multiSelectDropdownCheckerOptions.getItems().length; i++) {
-            				if(multiSelectDropdownCheckerOptions.getItems()[i].equals(checkerName)) {
-            	    			multiSelectDropdownCheckerOptions.select(i);
+            			for(int i = 0; i < multiSelectCheckerOptions.getItems().length; i++) {
+            				if(multiSelectCheckerOptions.getItems()[i].equals(checkerName)) {
+            	    			multiSelectCheckerOptions.select(i);
             	        	}
             			}
             		}
@@ -239,28 +230,26 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
     };
     textFieldTypeChecker.addModifyListener(checkerMultiSelectListener);
     
+    /** Adds a listener to the text field to synchronize inputed checkers from the multi-select list. */
     SelectionListener checkerTextFieldListener = new SelectionListener() {
 		@Override
 		public void widgetSelected(SelectionEvent arg0) {
-			// TODO Auto-generated method stub
 			StringBuilder result = new StringBuilder();
-			for (int i = 0; i < multiSelectDropdownCheckerOptions.getSelection().length; i++) {
-		    	result.append(checkerOptionsMap.get(multiSelectDropdownCheckerOptions.getSelection()[i]));
-		    	if (i != multiSelectDropdownCheckerOptions.getSelection().length - 1) {
+			for (int i = 0; i < multiSelectCheckerOptions.getSelection().length; i++) {
+		    	result.append(checkerOptionsMap.get(multiSelectCheckerOptions.getSelection()[i]));
+		    	if (i != multiSelectCheckerOptions.getSelection().length - 1) {
 		    		result.append(',');
 		    	}
 		    }
 			textFieldTypeChecker.setText(result.toString());
 		}
 
+		/** The multi-select list is initialized above in initializeValues() not need to set default again. */
 		@Override
-		public void widgetDefaultSelected(SelectionEvent arg0) {
-			// TODO Auto-generated method stub
-
-		}
+		public void widgetDefaultSelected(SelectionEvent arg0) {}
 		
     };
-    multiSelectDropdownCheckerOptions.addSelectionListener(checkerTextFieldListener);
+    multiSelectCheckerOptions.addSelectionListener(checkerTextFieldListener);
   }
 
   /** (non-Javadoc) Method declared on ModifyListener */
@@ -295,9 +284,9 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
         LSPCheckerFrameworkConstants.COMMAND_OPTIONS, textFieldCommandLineOptions.getText());
     
     StringBuilder result = new StringBuilder();
-    for (int i = 0; i < multiSelectDropdownCheckerOptions.getSelection().length; i++) {
-    	result.append(checkerOptionsMap.get(multiSelectDropdownCheckerOptions.getSelection()[i]));
-    	if (i != multiSelectDropdownCheckerOptions.getSelection().length - 1) {
+    for (int i = 0; i < multiSelectCheckerOptions.getSelection().length; i++) {
+    	result.append(checkerOptionsMap.get(multiSelectCheckerOptions.getSelection()[i]));
+    	if (i != multiSelectCheckerOptions.getSelection().length - 1) {
     		result.append(',');
     	}
     }
