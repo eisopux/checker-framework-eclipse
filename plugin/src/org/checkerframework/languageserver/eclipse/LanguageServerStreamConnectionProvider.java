@@ -117,13 +117,6 @@ public class LanguageServerStreamConnectionProvider extends ProcessStreamConnect
       commands.add("--commandLineOptions");
       commands.add(commandOptions);
     }
-
-    
-    commands.add("--checkers");
-    String[] checkers = typeChecker.split("\\,");
-    for (String checker : checkers) {
-        commands.add(checker + " ");
-    }
     
     setCommands(commands);
     setWorkingDirectory(System.getProperty("user.dir"));

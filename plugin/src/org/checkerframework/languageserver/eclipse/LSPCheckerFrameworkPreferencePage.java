@@ -1,7 +1,10 @@
 package org.checkerframework.languageserver.eclipse;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
@@ -12,7 +15,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -151,12 +153,12 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
    */
   private List createMultiSelectDropdown(Composite parent) {
 	// Create a multiple-selection list
-	  List multi = new List(parent, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
-	  for (String item : checkerOptionsMap.keySet()) {
-	      multi.add(item);
-	  }
-	  multi.addSelectionListener(this);
-	  return multi;
+	List multi = new List(parent, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
+	for (String item : builtinCheckers.keySet()) {
+	    multi.add(item);
+	}
+	multi.addSelectionListener(this);
+	return multi;
   }
 
   /**
@@ -196,17 +198,7 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
     
     /** Initializes states of the multi-select list from the preference store. */
     String[] checkersStored = store.getString(LSPCheckerFrameworkConstants.TYPE_CHECKER).split("\\,");
-    for (String checkerFullName : checkersStored) {
-    	for (String checkerName : checkerOptionsMap.keySet()) {
-    		if (checkerFullName.equals(checkerOptionsMap.get(checkerName))) {
-    			for(int i = 0; i < multiSelectCheckerOptions.getItems().length; i++) {
-    				if(multiSelectCheckerOptions.getItems()[i].equals(checkerName)) {
-    	    			multiSelectCheckerOptions.select(i);
-    	        	}
-    			}
-    		}
-    	}
-    }
+    synchronizeMultiSelectListWithTextField(checkersStored);
    
     /** Adds a listener to the multi-select list to synchronize inputed checkers from the text field. */
     ModifyListener checkerMultiSelectListener = new ModifyListener() {
@@ -214,18 +206,7 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
         public void modifyText(ModifyEvent e) {
             // Handle event
         	String[] inputCheckers = textFieldTypeChecker.getText().split("\\,");
-        	multiSelectCheckerOptions.deselectAll();
-        	for (String checkerFullName : inputCheckers) {
-            	for (String checkerName : checkerOptionsMap.keySet()) {
-            		if (checkerFullName.equals(checkerOptionsMap.get(checkerName))) {
-            			for(int i = 0; i < multiSelectCheckerOptions.getItems().length; i++) {
-            				if(multiSelectCheckerOptions.getItems()[i].equals(checkerName)) {
-            	    			multiSelectCheckerOptions.select(i);
-            	        	}
-            			}
-            		}
-            	}
-            }
+        	synchronizeMultiSelectListWithTextField(inputCheckers);
         }
     };
     textFieldTypeChecker.addModifyListener(checkerMultiSelectListener);
@@ -234,14 +215,11 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
     SelectionListener checkerTextFieldListener = new SelectionListener() {
 		@Override
 		public void widgetSelected(SelectionEvent arg0) {
-			StringBuilder result = new StringBuilder();
-			for (int i = 0; i < multiSelectCheckerOptions.getSelection().length; i++) {
-		    	result.append(checkerOptionsMap.get(multiSelectCheckerOptions.getSelection()[i]));
-		    	if (i != multiSelectCheckerOptions.getSelection().length - 1) {
-		    		result.append(',');
-		    	}
-		    }
-			textFieldTypeChecker.setText(result.toString());
+			java.util.List<String> checkers = Arrays.asList(multiSelectCheckerOptions.getSelection());;
+		    String result = checkers.stream()
+		    		.map(i -> builtinCheckers.get(i))
+		    		.collect(Collectors.joining(","));
+		    textFieldTypeChecker.setText(result);
 		}
 
 		/** The multi-select list is initialized above in initializeValues() not need to set default again. */
@@ -250,6 +228,24 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
 		
     };
     multiSelectCheckerOptions.addSelectionListener(checkerTextFieldListener);
+  }
+  
+  private void synchronizeMultiSelectListWithTextField(String[] inputCheckersInTextField) {
+  	multiSelectCheckerOptions.deselectAll();
+  	/** Looping input checkers in text field */
+  	for (String checkerFullName : inputCheckersInTextField) {
+  		/** Looping built in checkers */
+  		for (String checkerName : builtinCheckers.keySet()) {
+      		if (checkerFullName.equals(builtinCheckers.get(checkerName))) {
+      			/** Looping multi-select list to select the checkers */
+      			for(int i = 0; i < multiSelectCheckerOptions.getItems().length; i++) {
+      				if(multiSelectCheckerOptions.getItems()[i].equals(checkerName)) {
+      	    			multiSelectCheckerOptions.select(i);
+      	        	}
+      			}
+      		}
+      	}
+    }
   }
 
   /** (non-Javadoc) Method declared on ModifyListener */
@@ -282,17 +278,8 @@ public class LSPCheckerFrameworkPreferencePage extends PreferencePage
     store.setValue(LSPCheckerFrameworkConstants.CHECKER_PATH, textFieldCheckerPath.getText());
     store.setValue(
         LSPCheckerFrameworkConstants.COMMAND_OPTIONS, textFieldCommandLineOptions.getText());
-    
-    StringBuilder result = new StringBuilder();
-    for (int i = 0; i < multiSelectCheckerOptions.getSelection().length; i++) {
-    	result.append(checkerOptionsMap.get(multiSelectCheckerOptions.getSelection()[i]));
-    	if (i != multiSelectCheckerOptions.getSelection().length - 1) {
-    		result.append(',');
-    	}
-    }
-    store.setValue(LSPCheckerFrameworkConstants.TYPE_CHECKER, result.toString());
   }
-
+  
   /** (non-Javadoc) Method declared on SelectionListener */
   public void widgetDefaultSelected(SelectionEvent event) {
     // Handle a default selection. Do nothing in this example
