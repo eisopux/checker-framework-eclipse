@@ -117,7 +117,7 @@ public class LanguageServerStreamConnectionProvider extends ProcessStreamConnect
       commands.add("--commandLineOptions");
       commands.add(commandOptions);
     }
-
+    
     setCommands(commands);
     setWorkingDirectory(System.getProperty("user.dir"));
   }
