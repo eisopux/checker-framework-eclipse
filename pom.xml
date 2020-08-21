@@ -8,6 +8,8 @@
 
   <modules>
     <module>plugin</module>
+    <module>feature</module>
+    <module>update-site</module>
   </modules>
 
   <properties>
