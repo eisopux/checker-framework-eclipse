@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.checkerframework.eclipse.feature
+Bundle-SymbolicName: org.checkerframework.feature;singleton:=true
+Bundle-Version: 1.0.0.qualifier
